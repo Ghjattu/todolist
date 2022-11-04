@@ -1,0 +1,38 @@
+.input-container {
+    position: relative;
+    overflow: auto;
+
+    margin: .3em 0;
+    padding-bottom: 1.2em;
+}
+
+.input-label {
+    display: block;
+
+    margin: .3em 0 .4em;
+
+    font-size: 1.3em;
+}
+
+.input-field {
+    border: 1px solid #afa8a8;
+    border-radius: 5px;
+    padding: .8em .6em;
+    width: 100%;
+
+    font-size: 1.1em;
+
+    outline: none;
+}
+
+.input-field:focus {
+    border: 1px solid var(--primary-color);
+}
+
+.input-error {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    color: var(--error-color);
+}
