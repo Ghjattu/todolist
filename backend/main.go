@@ -11,6 +11,7 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		c.String(http.StatusOK, "Hello world!")
 	})
+	InitRouter(r)
 	initDependencies()
 	err := r.Run()
 	if err != nil {
