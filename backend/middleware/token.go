@@ -1,9 +1,10 @@
 package middleware
 
 import (
-	"github.com/golang-jwt/jwt/v5"
 	"log"
 	"time"
+
+	"github.com/golang-jwt/jwt/v5"
 )
 
 var secretKey = []byte("todolist")
@@ -14,7 +15,7 @@ type CustomClaims struct {
 	jwt.RegisteredClaims
 }
 
-func GenerateToken(name string, id int64) string {
+func GenerateToken(name string, id int64) (string, error) {
 	log.Printf("Generate token with name:%v and id:%v\n", name, id)
 	claims := CustomClaims{
 		name,
@@ -28,8 +29,8 @@ func GenerateToken(name string, id int64) string {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	if tokenString, err := token.SignedString(secretKey); err != nil {
 		log.Printf("Fail to generate token, err: %s\n", err.Error())
-		return "fail"
+		return "", err
 	} else {
-		return tokenString
+		return tokenString, nil
 	}
 }
