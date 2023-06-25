@@ -1,8 +1,9 @@
-package controllers
+package controller
 
 import (
 	"backend/dao"
 	"backend/utils"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -14,16 +15,18 @@ type RegisterInput struct {
 }
 
 func Register(c *gin.Context) {
-	input := &RegisterInput{}
+	//input := &RegisterInput{}
+	//if err := c.ShouldBindJSON(input); err != nil {
+	//	utils.ErrorHandler(c, err)
+	//	return
+	//}
 
-	if err := c.ShouldBindJSON(input); err != nil {
-		utils.ErrorHandler(c, err)
-		return
-	}
-
+	username := c.Query("username")
+	password := c.Query("password")
+	fmt.Println(username, password)
 	user := &dao.User{
-		Username: input.Username,
-		Password: input.Password,
+		Username: username,
+		Password: password,
 	}
 	returnedUser, err := dao.CreateNewUser(user)
 	if err != nil {

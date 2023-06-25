@@ -1,16 +1,15 @@
 package main
 
 import (
-	"backend/controllers"
-
+	"backend/controller"
 	"github.com/gin-gonic/gin"
 )
 
 func InitRouter(r *gin.Engine) {
 	apiRouter := r.Group("/todolist/v1")
 	// user module
-	apiRouter.POST("/user/register", controllers.Register)
-	apiRouter.POST("/user/login", controllers.Login)
+	apiRouter.POST("/user/register", controller.Register)
+	apiRouter.POST("/user/login", controller.Login)
 	apiRouter.POST("/user/logout")
 
 	// item module

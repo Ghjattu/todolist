@@ -1,4 +1,4 @@
-package controllers
+package controller
 
 import (
 	"backend/middleware"
@@ -14,14 +14,18 @@ type LoginInput struct {
 }
 
 func Login(c *gin.Context) {
-	input := &LoginInput{}
+	//input := &LoginInput{}
+	//fmt.Println(input.Username, input.Password)
+	//if err := c.ShouldBindJSON(input); err != nil {
+	//	utils.ErrorHandler(c, err)
+	//	return
+	//}
 
-	if err := c.ShouldBindJSON(input); err != nil {
-		utils.ErrorHandler(c, err)
-		return
-	}
+	username := c.Query("username")
+	password := c.Query("password")
 
-	user, err := utils.ValidateLogin(input.Username, input.Password)
+	//user, err := utils.ValidateLogin(input.Username, input.Password)
+	user, err := utils.ValidateLogin(username, password)
 	if err != nil {
 		utils.ErrorHandler(c, err)
 		return
